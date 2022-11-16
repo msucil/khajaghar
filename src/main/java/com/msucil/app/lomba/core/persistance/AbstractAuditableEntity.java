@@ -11,6 +11,7 @@ import lombok.EqualsAndHashCode;
 public abstract class AbstractAuditableEntity<K, U> extends AbstractEntity<K> {
 
 	protected AbstractAuditableEntity() {
+		//empty constructor
 	}
 
 	@ManyToOne

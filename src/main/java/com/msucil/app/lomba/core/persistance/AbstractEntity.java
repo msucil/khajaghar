@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 public abstract class AbstractEntity<K> implements Serializable {
 
 	protected AbstractEntity() {
-
+		//empty constructor
 	}
 
 	@Id
