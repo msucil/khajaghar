@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import com.msucil.app.lomba.core.persistance.AbstractAuditableEntity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
