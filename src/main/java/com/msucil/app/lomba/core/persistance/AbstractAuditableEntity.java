@@ -9,10 +9,13 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
 public abstract class AbstractAuditableEntity<K, U> extends AbstractEntity<K> {
-	
+
+	protected AbstractAuditableEntity() {
+	}
+
 	@ManyToOne
 	private U createdBy;
-	
+
 	@ManyToOne
 	private U updatedBy;
 }

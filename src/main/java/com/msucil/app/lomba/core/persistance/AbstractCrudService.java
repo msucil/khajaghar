@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 
-public abstract class AbstractCrudService<T, PK> implements CrudService<T, PK> {
+public abstract class AbstractCrudService<T, K> implements CrudService<T, K> {
 
-	protected final BaseRepository<T, PK> repository;
+	protected final BaseRepository<T, K> repository;
 
-	protected AbstractCrudService(BaseRepository<T, PK> repository) {
+	protected AbstractCrudService(BaseRepository<T, K> repository) {
 		this.repository = repository;
 	}
 
@@ -20,7 +20,7 @@ public abstract class AbstractCrudService<T, PK> implements CrudService<T, PK> {
 	}
 
 	@Override
-	public List<T> findAllByIds(Iterable<PK> ids) {
+	public List<T> findAllByIds(Iterable<K> ids) {
 
 		return repository.findAllById(ids);
 	}
@@ -31,13 +31,13 @@ public abstract class AbstractCrudService<T, PK> implements CrudService<T, PK> {
 	}
 
 	@Override
-	public Optional<T> findById(PK id) {
+	public Optional<T> findById(K id) {
 
 		return repository.findById(id);
 	}
 
 	@Override
-	public boolean existsById(PK id) {
+	public boolean existsById(K id) {
 
 		return repository.existsById(id);
 	}
@@ -49,7 +49,7 @@ public abstract class AbstractCrudService<T, PK> implements CrudService<T, PK> {
 	}
 
 	@Override
-	public void deleteById(PK id) {
+	public void deleteById(K id) {
 		repository.deleteById(id);
 	}
 

@@ -12,21 +12,23 @@ import jakarta.persistence.Version;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
 @Data
 @EqualsAndHashCode
 @MappedSuperclass
 public abstract class AbstractEntity<K> implements Serializable {
 
+	protected AbstractEntity() {
+
+	}
 
 	@Id
 	@GeneratedValue(generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+	@GenericGenerator(name = "native", strategy = "native")
 	protected K id;
-	
+
 	@Version
 	protected int version;
-	
+
 	protected Instant createdAt = Instant.now();
 	protected Instant updatedAt = Instant.now();
 }
