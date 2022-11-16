@@ -36,8 +36,6 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 
 	private final String baseUrl;
 
-	private final String templateDir;
-
 	private final String indexPage;
 	private final String paginatePage;
 	private final String formPage;
@@ -47,8 +45,6 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 		this.crudService = crudService;
 		this.mapper = mapper;
 		this.baseUrl = baseUrl;
-		this.templateDir = templateDir;
-
 		this.indexPage = templateDir + INDEX_PAGE_NAME;
 		this.paginatePage = templateDir + PAGINATE_PAGE_NAME;
 		this.formPage = templateDir + FORM_PAGE_NAME;
