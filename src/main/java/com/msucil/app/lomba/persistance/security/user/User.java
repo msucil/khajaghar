@@ -7,11 +7,20 @@ import org.springframework.security.core.GrantedAuthority;
 import com.msucil.app.lomba.core.persistance.AbstractAuditableEntity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "users")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class User extends AbstractAuditableEntity<Long, User>{
 
 	private static final long serialVersionUID = 1L;

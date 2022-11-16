@@ -27,6 +27,6 @@ public abstract class AbstractEntity<K> implements Serializable {
 	@Version
 	protected int version;
 	
-	protected Instant createdAt;
-	protected Instant updatedAt;
+	protected Instant createdAt = Instant.now();
+	protected Instant updatedAt = Instant.now();
 }
