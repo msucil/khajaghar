@@ -14,7 +14,7 @@ public class UserCrudController extends CrudController<User, UserDto, Long> {
 
 	public UserCrudController(UserCrudService crudService, UserMapper mapper) {
 
-		super(crudService, mapper, URL, "pages/security/account/users");
+		super(crudService, mapper, URL, "pages/security/account/users/");
 
 	}
 }

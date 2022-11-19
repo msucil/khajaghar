@@ -20,4 +20,6 @@ spring:
 
 logging:
   level:
-    web: DEBUG
+    web: INFO
+    '[net.ttddyy.dsproxy.listener]': debug
+  

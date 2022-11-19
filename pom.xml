@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.0-RC1</version>
+		<version>3.0.0-RC2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -19,9 +19,9 @@
 		<java.version>17</java.version>
 		<mapstruct.version>1.5.3.Final</mapstruct.version>
 		<testcontainers.version>1.17.4</testcontainers.version>
+		<datasource.proxy.starter.version>1.8.1</datasource.proxy.starter.version>
 
 		<!-- plugin versions //-->
-		<maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
 		<maven.frontend.version>1.12.1</maven.frontend.version>
 		<node.version>v18.12.1</node.version>
 		<jacoco.plugin.version>0.8.8</jacoco.plugin.version>
@@ -97,6 +97,12 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.gavlyukovskiy/datasource-proxy-spring-boot-starter -->
+		<dependency>
+			<groupId>com.github.gavlyukovskiy</groupId>
+			<artifactId>datasource-proxy-spring-boot-starter</artifactId>
+			<version>${datasource.proxy.starter.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -139,13 +145,20 @@
 				<directory>${project.basedir}/src/main/frontend/node_modules/bootstrap/dist/css</directory>
 				<targetPath>${project.build.outputDirectory}/static/library/bootstrap/css</targetPath>
 			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/frontend/dist</directory>
+				<targetPath>${project.build.outputDirectory}/static/theme/css</targetPath>
+			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/frontend/node_modules/@coreui/coreui/dist/js</directory>
+				<targetPath>${project.build.outputDirectory}/static/theme/js</targetPath>
+			</resource>
 		</resources>
 
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
 					<source>${java.version}</source> <!-- depending on your project -->
 					<target>${java.version}</target> <!-- depending on your project -->
@@ -210,16 +223,16 @@
 							<goal>npm</goal>
 						</goals>
 					</execution>
-					<!-- <execution>
+					<execution>
 						<id>scss-compile</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>
 						<configuration>
-							<arguments>run scss</arguments>
+							<arguments>run sass</arguments>
 						</configuration>
 					</execution>
-					-->
+
 				</executions>
 			</plugin>
 
@@ -236,7 +249,7 @@
 						</goals>
 						<configuration>
 							<!-- Sets the path to the file which contains the execution data. -->
-							<destFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</destFile>
+							<destFile>${project.build.directory}/test-results/coverage/jacoco/jacoco.exec</destFile>
 						</configuration>
 					</execution>
 					<!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
@@ -247,8 +260,8 @@
 							<goal>report</goal>
 						</goals>
 						<configuration>
-							<dataFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</dataFile>
-							<outputDirectory>${project.testresult.directory}/coverage</outputDirectory>
+							<dataFile>${project.build.directory}/test-results/coverage/jacoco/jacoco.exec</dataFile>
+							<outputDirectory>${project.build.directory}/test-results/coverage</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>

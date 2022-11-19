@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.msucil.app.lomba.core.persistance.AbstractEntity;
@@ -50,6 +51,7 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 		this.formPage = templateDir + FORM_PAGE_NAME;
 	}
 
+	@RequestMapping
 	public String index(Model model) {
 
 		model.addAttribute("records", crudService.findAll());
@@ -57,6 +59,7 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 		return indexPage;
 	}
 
+	@RequestMapping("/paginate")
 	public String pageinate(Model model) {
 
 		model.addAttribute("records", crudService.findAll());
@@ -136,7 +139,7 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 		}
 	}
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}/delete")
 	public String delete(@PathVariable("id") I id) {
 
 		crudService.deleteById(id);

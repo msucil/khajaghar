@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Dto<PK> {
+public class Dto<K> {
 
-	private PK id;
+	private K id;
 	
 	private int version;
 	

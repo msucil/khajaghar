@@ -2,15 +2,45 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Hello Lomba</title>
-<link
-        th:href="@{/library/bootstrap/css/bootstrap.min.css}"
-        rel="stylesheet">
+<link th:href="@{/theme/css/theme/theme.css}" rel="stylesheet">
 </head>
 
 <body>
-<div class="container mx-auto">
-<h1 class="table table-header">Hello</h1>
-</div>
-<script th:src="@{/library/coreui/dist/js/coreui.bundle.js}"></script>
+	<div class="sidebar sidebar-show show" id="sidebar">
+		<ul class="sidebar-nav">
+			<li class="nav-title">Nav Title</li>
+			<li class="nav-item"><a class="nav-link" href="#"> <i
+					class="nav-icon cil-speedometer"></i> Nav item
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="#"> <i
+					class="nav-icon cil-speedometer"></i> With badge <span
+					class="badge bg-primary">NEW</span>
+			</a></li>
+			<li class="nav-item nav-group"><a
+				class="nav-link nav-group-toggle" href="#"> <i
+					class="nav-icon cil-puzzle"></i> Nav dropdown
+			</a>
+				<ul class="nav-group-items">
+					<li class="nav-item"><a class="nav-link" href="#"> <i
+							class="nav-icon cil-puzzle"></i> Nav dropdown item
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"> <i
+							class="nav-icon cil-puzzle"></i> Nav dropdown item
+					</a></li>
+				</ul></li>
+			<li class="nav-item mt-auto"><a
+				class="nav-link nav-link-success" href="https://coreui.io"> <i
+					class="nav-icon cil-cloud-download"></i> Download CoreUI
+			</a></li>
+			<li class="nav-item"><a class="nav-link nav-link-danger"
+				href="https://coreui.io/pro/"> <i class="nav-icon cil-layers"></i>
+					Try CoreUI <strong>PRO</strong>
+			</a></li>
+		</ul>
+		<button class="sidebar-toggler" type="button"></button>
+	</div>
+	<script th:src="@{/theme/js/coreui.bundle.min.js}"></script>
+	<script type="text/javascript">
+	</script>
 </body>
 </html>
