@@ -146,6 +146,10 @@
 				<targetPath>${project.build.outputDirectory}/static/library/bootstrap/css</targetPath>
 			</resource>
 			<resource>
+				<directory>${project.basedir}/src/main/frontend/node_modules/bootstrap-icons/font</directory>
+				<targetPath>${project.build.outputDirectory}/static/library/bootstrap-icons</targetPath>
+			</resource>
+			<resource>
 				<directory>${project.basedir}/src/main/frontend/dist</directory>
 				<targetPath>${project.build.outputDirectory}/static/theme/css</targetPath>
 			</resource>

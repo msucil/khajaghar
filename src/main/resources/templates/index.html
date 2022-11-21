@@ -1,46 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/admin::layout('Dashboard', ~{::#content})}">
 <head>
 <title>Hello Lomba</title>
-<link th:href="@{/theme/css/theme/theme.css}" rel="stylesheet">
+<link th:href="@{/theme/css/theme/theme.css}"
+	href="../../frontend/dist/theme/theme.css" rel="stylesheet" />
+
+<link th:href="@{/library/bootstrap-icons/bootstrap-icons.css}"
+	href="../../frontend/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet" />
 </head>
 
 <body>
-	<div class="sidebar sidebar-show show" id="sidebar">
-		<ul class="sidebar-nav">
-			<li class="nav-title">Nav Title</li>
-			<li class="nav-item"><a class="nav-link" href="#"> <i
-					class="nav-icon cil-speedometer"></i> Nav item
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="#"> <i
-					class="nav-icon cil-speedometer"></i> With badge <span
-					class="badge bg-primary">NEW</span>
-			</a></li>
-			<li class="nav-item nav-group"><a
-				class="nav-link nav-group-toggle" href="#"> <i
-					class="nav-icon cil-puzzle"></i> Nav dropdown
-			</a>
-				<ul class="nav-group-items">
-					<li class="nav-item"><a class="nav-link" href="#"> <i
-							class="nav-icon cil-puzzle"></i> Nav dropdown item
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> <i
-							class="nav-icon cil-puzzle"></i> Nav dropdown item
-					</a></li>
-				</ul></li>
-			<li class="nav-item mt-auto"><a
-				class="nav-link nav-link-success" href="https://coreui.io"> <i
-					class="nav-icon cil-cloud-download"></i> Download CoreUI
-			</a></li>
-			<li class="nav-item"><a class="nav-link nav-link-danger"
-				href="https://coreui.io/pro/"> <i class="nav-icon cil-layers"></i>
-					Try CoreUI <strong>PRO</strong>
-			</a></li>
-		</ul>
-		<button class="sidebar-toggler" type="button"></button>
-	</div>
-	<script th:src="@{/theme/js/coreui.bundle.min.js}"></script>
-	<script type="text/javascript">
-	</script>
+	<section id="content">
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Dashboard</div>
+					</div>
+					<div class="card-body">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>
