@@ -3,8 +3,6 @@ package com.msucil.app.lomba.core.persistance;
 import java.io.Serializable;
 import java.time.Instant;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
