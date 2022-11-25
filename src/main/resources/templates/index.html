@@ -1,16 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/admin::layout(~{::title}, ~{::#content},~{}, ~{})}">
 <head>
-<title>Hello Lomba</title>
-<link
-        th:href="@{/library/bootstrap/css/bootstrap.min.css}"
-        rel="stylesheet">
+<title>Dashboard</title>
+<link th:href="@{/theme/css/theme/theme.css}"
+	href="../../frontend/dist/theme/theme.css" rel="stylesheet" />
+
+<link th:href="@{/library/bootstrap-icons/bootstrap-icons.css}"
+	href="../../frontend/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet" />
 </head>
 
 <body>
-<div class="container mx-auto">
-<h1 class="table table-header">Hello</h1>
-</div>
-<script th:src="@{/library/coreui/dist/js/coreui.bundle.js}"></script>
+	<section id="content">
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">Dashboard</div>
+					</div>
+					<div class="card-body">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 </body>
 </html>

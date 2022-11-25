@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/admin::layout(~{::title}, ~{::#content}, ~{}, ~{})}">
+<head>
+<title>Users</title>
+<link th:href="@{/theme/css/theme/theme.css}"
+	href="../../frontend/dist/theme/theme.css" rel="stylesheet" />
+
+<link th:href="@{/library/bootstrap-icons/bootstrap-icons.css}"
+	href="../../frontend/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet" />
+</head>
+
+<body>
+	<section id="content">
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">
+							Users <a href="#" class="float-md-end"
+								th:href="@{/security/account/users/create}"> <i
+								class="btn btn-sm btn-outline-primary bi bi-plus-lg"></i>
+							</a>
+						</div>
+					</div>
+					<div class="card-body">
+
+						<table class="table table-responsive table-striped table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Full Name</th>
+									<th>Email</th>
+									<th>Username</th>
+									<th>Created At</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbdoy class="table-group-divider"></tbdoy>
+							<tr th:each="r, stat : ${records}">
+								<td th:text="${stat.count}"></td>
+								<td th:text="${r.fullName}"></td>
+								<td th:text="${r.Email}"></td>
+								<td th:text="${r.Username}"></td>
+								<td th:text="${r.createdAt}"></td>
+								<td><a class="text-decoration-none text-white btn btn-info"
+									data-toggle="tooltip" data-title="Edit"
+									th:href="@{/security/account/users/{id}/update(id=${r.id})}">
+										<i class="bi bi-pencil"></i>
+										<!-- th:if="${#authentication.getPrincipal().getId() == record.id}"  -->
+								</a> <!--<form class="d-inline" th:action="@{/customers/{id}/delete(id=${record.id})}"
+                    method="POST">
+                <button type="submit" class="btn btn-danger">
+                  <i class="c-icon cil-backspace"></i>
+                </button>
+              </form>--></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

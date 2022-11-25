@@ -1,1 +1,15 @@
-@import "base";
+
+
+
+@import '../../node_modules/@coreui/coreui/scss/coreui.scss';
+
+
+/**
+	layout
+*/
+.wrapper {
+  width: 100%;
+  @include ltr-rtl("padding-left", var(--cui-sidebar-occupy-start, 0));
+  will-change: auto;
+  @include transition(padding .15s);
+}

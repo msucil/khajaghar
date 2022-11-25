@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/admin::layout(~{::title}, ~{::#content}, ~{}, ~{})}">
+<head>
+<title>Users</title>
+<link th:href="@{/theme/css/theme/theme.css}"
+	href="../../frontend/dist/theme/theme.css" rel="stylesheet" />
+
+<link th:href="@{/library/bootstrap-icons/bootstrap-icons.css}"
+	href="../../frontend/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet" />
+</head>
+
+<body>
+	<section id="content">
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">
+							User detail <span class="float-md-end"> <a class="btn btn-sm btn-outline-primary" href="#"
+								th:href="@{/security/account/users/create}"> <i
+									class=" bi bi-plus-lg"></i>
+							</a>
+							
+							<a class="btn btn-sm btn-outline-info" href="#"
+								th:href="@{/security/account/users/{id}/update(id = ${record.id})}"> <i
+									class=" bi bi-pencil"></i>
+							</a>
+							</span>
+						</div>
+					</div>
+					<div class="card-body"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

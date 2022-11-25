@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.0-RC1</version>
+		<version>3.0.0-RC2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -17,7 +17,9 @@
 
 	<properties>
 		<java.version>17</java.version>
+		<mapstruct.version>1.5.3.Final</mapstruct.version>
 		<testcontainers.version>1.17.4</testcontainers.version>
+		<datasource.proxy.starter.version>1.8.1</datasource.proxy.starter.version>
 
 		<!-- plugin versions //-->
 		<maven.frontend.version>1.12.1</maven.frontend.version>
@@ -57,13 +59,21 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-jdbc</artifactId>
 		</dependency>
+		//-->
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
 		</dependency>
 
 		<dependency>
@@ -86,6 +96,12 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.gavlyukovskiy/datasource-proxy-spring-boot-starter -->
+		<dependency>
+			<groupId>com.github.gavlyukovskiy</groupId>
+			<artifactId>datasource-proxy-spring-boot-starter</artifactId>
+			<version>${datasource.proxy.starter.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -126,12 +142,56 @@
 				<directory>${project.basedir}/src/main/resources</directory>
 			</resource>
 			<resource>
-				<directory>${project.basedir}/src/main/frontend/node_modules/bootstrap/dist/css</directory>
-				<targetPath>${project.build.outputDirectory}/static/library/bootstrap/css</targetPath>
+				<directory>${project.basedir}/src/main/frontend/node_modules/bootstrap/dist</directory>
+				<targetPath>${project.build.outputDirectory}/static/library/bootstrap</targetPath>
+			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/frontend/node_modules/bootstrap-icons/font</directory>
+				<targetPath>${project.build.outputDirectory}/static/library/bootstrap-icons</targetPath>
+			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/frontend/dist</directory>
+				<targetPath>${project.build.outputDirectory}/static/theme/css</targetPath>
+			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/frontend/node_modules/@coreui/coreui/dist/js</directory>
+				<targetPath>${project.build.outputDirectory}/static/theme/js</targetPath>
 			</resource>
 		</resources>
 
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source> <!-- depending on your project -->
+					<target>${java.version}</target> <!-- depending on your project -->
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+						<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding //-->
+						<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding -->
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>0.2.0</version>
+						</path>
+
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
+
+						<!-- other annotation processors -->
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -167,16 +227,16 @@
 							<goal>npm</goal>
 						</goals>
 					</execution>
-					<!-- <execution>
+					<execution>
 						<id>scss-compile</id>
 						<goals>
 							<goal>npm</goal>
 						</goals>
 						<configuration>
-							<arguments>run scss</arguments>
+							<arguments>run sass</arguments>
 						</configuration>
 					</execution>
-					-->
+
 				</executions>
 			</plugin>
 
@@ -193,7 +253,7 @@
 						</goals>
 						<configuration>
 							<!-- Sets the path to the file which contains the execution data. -->
-							<destFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</destFile>
+							<destFile>${project.build.directory}/test-results/coverage/jacoco/jacoco.exec</destFile>
 						</configuration>
 					</execution>
 					<!-- Ensures that the code coverage report for unit tests is created after unit tests have been run -->
@@ -204,8 +264,8 @@
 							<goal>report</goal>
 						</goals>
 						<configuration>
-							<dataFile>${project.testresult.directory}/coverage/jacoco/jacoco.exec</dataFile>
-							<outputDirectory>${project.testresult.directory}/coverage</outputDirectory>
+							<dataFile>${project.build.directory}/test-results/coverage/jacoco/jacoco.exec</dataFile>
+							<outputDirectory>${project.build.directory}/test-results/coverage</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>

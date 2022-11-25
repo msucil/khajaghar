@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/admin::layout(~{::title}, ~{::#content}, ~{}, ~{})}">
+<head>
+<title>Create User Account</title>
+<link th:href="@{/theme/css/theme/theme.css}"
+	href="../../frontend/dist/theme/theme.css" rel="stylesheet" />
+
+<link th:href="@{/library/bootstrap-icons/bootstrap-icons.css}"
+	href="../../frontend/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet" />
+</head>
+
+<body>
+	<section id="content">
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<div class="card-header">
+						<div class="card-title">
+							<span th:if=${form.isNew}>Create</span><span th:if="${!form.isNew}">Update</span> User Account 
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-12" th:if="${error}">
+								<div class="alert alert-danger alert-dismissible fade show"
+									role="alert">
+									<span th:text="${error}"></span>
+									<button type="button" class="btn-close" data-dismiss="alert"
+										aria-label="Close">
+										<span aria-hidden="true"></span>
+									</button>
+								</div>
+							</div>
+							<div class="col-md-12 col-lg-12">
+								<form action="#" th:action="${form.isNew} ? @{/security/account/users/create} 
+								: @{/security/account/users/{id}/update(id = ${form.id})}"
+									method="post" th:object="${form}">
+									<div class="mb-3">
+										<label class="form-label" for="name">Full Name</label> <input type="text"
+											class="form-control"
+											th:classappend="${#fields.hasErrors('fullName')? 'is-invalid' : ''}"
+											id="name" aria-describedby="Full Name" required th:field="*{fullName}"
+											placeholder="Full Name">
+										<div class="invalid-feedback"
+											th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">
+										</div>
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="email">Email</label> <input type="email"
+											class="form-control" required
+											th:classappend="${#fields.hasErrors('email')? 'is-invalid' : ''}"
+											id="email" aria-describedby="Email" th:field="*{email}"
+											placeholder="Email">
+										<div class="invalid-feedback"
+											th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+										</div>
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="username">Username</label> <input type="text"
+											class="form-control"
+											th:classappend="${#fields.hasErrors('username')? 'is-invalid' : ''}"
+											id="username" aria-describedby="Username" required
+											th:field="*{username}" placeholder="Username"
+											autocomplete="false">
+										<div class="invalid-feedback"
+											th:if="${#fields.hasErrors('username')}"
+											th:errors="*{username}"></div>
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="password">Password</label> <input type="password"
+											class="form-control" id="password"
+											th:classappend="${#fields.hasErrors('password')? 'is-invalid' : ''}"
+											aria-describedby="Password" required th:field="*{password}"
+											placeholder="Password" autocomplete="false">
+										<div class="invalid-feedback"
+											th:if="${#fields.hasErrors('password')}"
+											th:errors="*{password}"></div>
+									</div>
+									<div  class="mb-3">
+										<label class="form-label" for="rePassword">Re-Type Password</label> <input
+											type="password" class="form-control" id="rePassword"
+											aria-describedby="Re-type Password"
+											th:classappend="${#fields.hasErrors('password')? 'is-invalid' : ''}"
+											required th:field="*{verifyPassword}"
+											placeholder="Retype Password" autocomplete="false">
+										<div class="invalid-feedback"
+											th:if="${#fields.hasErrors('password')}"
+											th:errors="*{password}"></div>
+									</div>
+									
+									<input type="hidden" th:value="*{id}" />
+									<input type="hidden" th:value="*{version}" />
+									<input type="hidden" th:value="*{createdAt}" />
+									<button type="submit" class="btn btn-primary">Save</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
