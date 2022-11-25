@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="~{layout/admin::layout('Dashboard', ~{::#content})}">
+	th:replace="~{layout/admin::layout(~{::title}, ~{::#content},~{}, ~{})}">
 <head>
-<title>Hello Lomba</title>
+<title>Dashboard</title>
 <link th:href="@{/theme/css/theme/theme.css}"
 	href="../../frontend/dist/theme/theme.css" rel="stylesheet" />
 

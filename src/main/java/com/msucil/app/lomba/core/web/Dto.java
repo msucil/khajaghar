@@ -15,7 +15,11 @@ public class Dto<K> {
 	
 	private int version;
 	
-	private Instant createdAt;
+	private Instant createdAt = Instant.now();
 	
-	private Instant updatedAt;
+	private Instant updatedAt = Instant.now();
+	
+	public boolean isNew() {
+		return id == null;
+	}
 }

@@ -6,6 +6,7 @@ import java.time.Instant;
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
@@ -22,8 +23,7 @@ public abstract class AbstractEntity<K> implements Serializable {
 	}
 
 	@Id
-	@GeneratedValue(generator = "native")
-	@GenericGenerator(name = "native", strategy = "native")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected K id;
 
 	@Version

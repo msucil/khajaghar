@@ -1,6 +1,5 @@
 package com.msucil.app.lomba.persistance.security.user;
 
-import java.util.Collections;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;

@@ -1,51 +1,70 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:fragment="layout(pageTitle, content)">
+	th:fragment="layout(pageTitle, content, links, scripts)">
 <head>
-<title th:text="${pageTitle}">Lomba</title>
+<title th:replace="${pageTitle}">Lomba</title>
 <link th:href="@{/theme/css/theme/theme.css}"
 	href="../../../frontend/dist/theme/theme.css" rel="stylesheet" />
 
 <link th:href="@{/library/bootstrap-icons/bootstrap-icons.css}"
 	href="../../../frontend/node_modules/bootstrap-icons/font/bootstrap-icons.css"
 	rel="stylesheet" />
+
+<th:block th:replace="${links}" />
 </head>
 
 <body>
 	<div class="sidebar sidebar-dark sidebar-fixed" id="sidebar">
 		<div class="sidebar-brand d-none d-md-flex">
 			<i class="sidebar-brand-full bi bi-house-up-fill"
-				style="font-size: 2rem" alt="Logo"> </i> <i
-				class="sidebar-brand-narrow bi bi-house-up-fill"
+				style="font-size: 2rem" alt="Logo"> </i>
+			<i class="sidebar-brand-narrow bi bi-house-up-fill"
 				style="font-size: 2rem" alt="Logo"> </i>
 		</div>
 		<ul class="sidebar-nav" data-coreui="navigation" data-simplebar="">
-			<li class="nav-item"><a class="nav-link" href="#" th:href="@{/}">
-					<i class="nav-icon bi bi-pie-chart-fill"> </i> Dashboard<span
-					class="badge badge-sm bg-info ms-auto">NEW</span>
-			</a></li>
+			<li class="nav-item">
+				<a class="nav-link" href="#" th:href="@{/}">
+					<i class="nav-icon bi bi-pie-chart-fill"> </i>
+					Dashboard
+					<span class="badge badge-sm bg-info ms-auto">NEW</span>
+				</a>
+			</li>
 			<li class="nav-title">Configurations</li>
-			<li class="nav-item"><a class="nav-link"
-				th:href="@{/security/account/users}" href="#"> <i
-					class="nav-icon bi bi-people-fill"></i> Users
-			</a></li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/security/account/users}" href="#">
+					<i class="nav-icon bi bi-people-fill"></i>
+					Users
+				</a>
+			</li>
 			<li class="nav-title">Components</li>
-			<li class="nav-group"><a class="nav-link nav-group-toggle"
-				href="#"> <svg class="nav-icon">
-              <use
-							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-puzzle"></use>
-            </svg> Base
-			</a>
+			<li class="nav-group">
+				<a class="nav-link nav-group-toggle" href="#">
+					<svg class="nav-icon">
+             
+            </svg>
+					Base
+				</a>
 				<ul class="nav-group-items">
-					<li class="nav-item"><a class="nav-link"
-						href="base/accordion.html"><span class="nav-icon"></span>
-							Accordion</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="base/breadcrumb.html"><span class="nav-icon"></span>
-							Breadcrumb</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="base/cards.html"><span class="nav-icon"></span> Cards</a></li>
-				</ul></li>
+					<li class="nav-item">
+						<a class="nav-link" href="base/accordion.html">
+							<span class="nav-icon"></span>
+							Accordion
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="base/breadcrumb.html">
+							<span class="nav-icon"></span>
+							Breadcrumb
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="base/cards.html">
+							<span class="nav-icon"></span>
+							Cards
+						</a>
+					</li>
+				</ul>
+			</li>
 			<li class="nav-divider"></li>
 		</ul>
 		<button class="sidebar-toggler" type="button"
@@ -62,92 +81,117 @@
 							xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
             </svg> -->
 				</button>
-				<a class="header-brand d-md-none" href="#"> <svg width="118"
-						height="46" alt="CoreUI Logo">
+				<a class="header-brand d-md-none" href="#">
+					<svg width="118" height="46" alt="CoreUI Logo">
               <use xlink:href="assets/brand/coreui.svg#full"></use>
-            </svg></a>
+            </svg>
+				</a>
 				<ul class="header-nav d-none d-md-flex">
-					<li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Users</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Dashboard</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Users</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Settings</a>
+					</li>
 				</ul>
 				<ul class="header-nav ms-auto">
-					<li class="nav-item"><a class="nav-link" href="#"> <svg
-								class="icon icon-lg">
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<svg class="icon icon-lg">
                   <use
 									xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                </svg></a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> <svg
-								class="icon icon-lg">
+                </svg>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<svg class="icon icon-lg">
                   <use
 									xlink:href="vendors/@coreui/icons/svg/free.svg#cil-list-rich"></use>
-                </svg></a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> <svg
-								class="icon icon-lg">
+                </svg>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							<svg class="icon icon-lg">
                   <use
 									xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                </svg></a></li>
+                </svg>
+						</a>
+					</li>
 				</ul>
 				<ul class="header-nav ms-3">
-					<li class="nav-item dropdown"><a class="nav-link py-0"
-						data-coreui-toggle="dropdown" href="#" role="button"
-						aria-haspopup="true" aria-expanded="false">
+					<li class="nav-item dropdown">
+						<a class="nav-link py-0" data-coreui-toggle="dropdown" href="#"
+							role="button" aria-haspopup="true" aria-expanded="false">
 							<div class="avatar avatar-md">
 								<img class="avatar-img" src="assets/img/avatars/8.jpg"
 									alt="user@email.com">
 							</div>
-					</a>
+						</a>
 						<div class="dropdown-menu dropdown-menu-end pt-0">
 							<div class="dropdown-header bg-light py-2">
 								<div class="fw-semibold">Account</div>
 							</div>
-							<a class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-bell"></use>
-                  </svg> Updates<span class="badge badge-sm bg-info ms-2">42</span></a><a
-								class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                  </svg> Messages<span class="badge badge-sm bg-success ms-2">42</span></a><a
-								class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-task"></use>
-                  </svg> Tasks<span class="badge badge-sm bg-danger ms-2">42</span></a><a
-								class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-comment-square"></use>
-                  </svg> Comments<span class="badge badge-sm bg-warning ms-2">42</span></a>
+							<a class="dropdown-item" href="#">
+								<svg class="icon me-2">
+                    
+                  </svg>
+								Updates
+								<span class="badge badge-sm bg-info ms-2">42</span>
+							</a>
+							<a class="dropdown-item" href="#">
+								<svg class="icon me-2"> </svg>
+								Messages
+								<span class="badge badge-sm bg-success ms-2">42</span>
+							</a>
+							<a class="dropdown-item" href="#">
+								<svg class="icon me-2"></svg>
+								Tasks
+								<span class="badge badge-sm bg-danger ms-2">42</span>
+							</a>
+							<a class="dropdown-item" href="#">
+								<svg class="icon me-2"></svg>
+								Comments
+								<span class="badge badge-sm bg-warning ms-2">42</span>
+							</a>
 							<div class="dropdown-header bg-light py-2">
 								<div class="fw-semibold">Settings</div>
 							</div>
-							<a class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
-                  </svg> Profile
-							</a><a class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-settings"></use>
-                  </svg> Settings
-							</a><a class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-credit-card"></use>
-                  </svg> Payments<span
-								class="badge badge-sm bg-secondary ms-2">42</span></a><a
-								class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-file"></use>
-                  </svg> Projects<span class="badge badge-sm bg-primary ms-2">42</span></a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
-                  </svg> Lock Account
-							</a><a class="dropdown-item" href="#"> <svg class="icon me-2">
-                    <use
-										xlink:href="vendors/@coreui/icons/svg/free.svg#cil-account-logout"></use>
-                  </svg> Logout
+							<a class="dropdown-item" href="#">
+								<svg class="icon me-2"></svg>
+								Profile
 							</a>
-						</div></li>
+							<a class="dropdown-item" href="#">
+								
+								Settings
+							</a>
+							<a class="dropdown-item" href="#">
+								Payments
+								<span class="badge badge-sm bg-secondary ms-2">42</span>
+							</a>
+							<a class="dropdown-item" href="#">
+								Projects
+								<span class="badge badge-sm bg-primary ms-2">42</span>
+							</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">
+								<svg class="icon me-2">
+                    
+                  </svg>
+								Lock Account
+							</a>
+							<a class="dropdown-item" href="#">
+								<svg class="icon me-2">
+                    
+                  </svg>
+								Logout
+							</a>
+						</div>
+					</li>
 				</ul>
 			</div>
 			<div class="header-divider"></div>
@@ -155,9 +199,12 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb my-0 ms-2">
 						<li class="breadcrumb-item">
-							<!-- if breadcrumb is single--> <span>Home</span>
+							<!-- if breadcrumb is single-->
+							<span>Home</span>
 						</li>
-						<li class="breadcrumb-item active"><span>Dashboard</span></li>
+						<li class="breadcrumb-item active">
+							<span>Dashboard</span>
+						</li>
 					</ol>
 				</nav>
 			</div>
@@ -165,25 +212,36 @@
 
 		<div class="body flex-grow-1 px-3">
 			<div class="container-lg">
+				<div class="toast-container top-0 end-0 p-3">
+					<div th:if="${success}"
+						class="toast toast-dismissable fade show align-items-center text-bg-info"
+						role="alert" aria-live="assertive" aria-atomic="true">
+						<div class="d-flex">
+							<div class="toast-body">Operation Successful</div>
+							<button type="button"
+								class="btn-close btn-close-white me-2 m-auto"
+								data-bs-dismiss="toast" aria-label="Close"></button>
+						</div>
+					</div>
+				</div>
+
 				<section th:replace="${content}"></section>
 			</div>
 		</div>
 		<footer class="footer">
-			<div>
-				<a href="https://coreui.io">CoreUI </a><a href="https://coreui.io">Bootstrap
-					Admin Template</a> © 2022 creativeLabs.
-			</div>
-			<div class="ms-auto">
-				Powered by&nbsp;<a href="https://coreui.io/docs/">CoreUI UI
-					Components</a>
-			</div>
+			<div>Lomba The Gurkha Bistro</div>
 		</footer>
 	</div>
 
+	<script type="text/javascript"
+		th:src="@{/library/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<script th:src="@{/theme/js/coreui.bundle.min.js}"
 		src="../../../frontend/node_modules/@coreui/coreui/dist/js/coreui.bundle.min.js"
 		type="text/javascript">
 		
 	</script>
+
+	<th:block th:replace="${scripts}" />
+
 </body>
 </html>

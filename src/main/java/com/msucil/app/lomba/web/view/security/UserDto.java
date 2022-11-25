@@ -1,6 +1,7 @@
 package com.msucil.app.lomba.web.view.security;
 
 import com.msucil.app.lomba.core.web.Dto;
+import com.msucil.app.lomba.service.verifyproperty.VerifyProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@VerifyProperty(property = "password", verifyWith = "verifyPassword", message = "Password does not match")
 public class UserDto extends Dto<Long> {
 
 	private String fullName;
+	private String email;
+	private String username;
+	private String password;
+	private String verifyPassword;
 }

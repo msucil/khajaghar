@@ -142,8 +142,8 @@
 				<directory>${project.basedir}/src/main/resources</directory>
 			</resource>
 			<resource>
-				<directory>${project.basedir}/src/main/frontend/node_modules/bootstrap/dist/css</directory>
-				<targetPath>${project.build.outputDirectory}/static/library/bootstrap/css</targetPath>
+				<directory>${project.basedir}/src/main/frontend/node_modules/bootstrap/dist</directory>
+				<targetPath>${project.build.outputDirectory}/static/library/bootstrap</targetPath>
 			</resource>
 			<resource>
 				<directory>${project.basedir}/src/main/frontend/node_modules/bootstrap-icons/font</directory>

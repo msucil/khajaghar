@@ -22,6 +22,7 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 	private static final String INDEX_PAGE_NAME = "index";
 	private static final String PAGINATE_PAGE_NAME = "paginate";
 	private static final String FORM_PAGE_NAME = "form";
+	private static final String DETAIL_PAGE_NAME = "detail";
 
 	protected static final String SUCCESS_KEY = "success";
 	protected static final String ERROR_KEY = "error";
@@ -40,6 +41,7 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 	private final String indexPage;
 	private final String paginatePage;
 	private final String formPage;
+	private final String detailPage;
 
 	protected CrudController(CrudService<E, I> crudService, AbstractMapper<E, D, I> mapper, String baseUrl,
 			String templateDir) {
@@ -49,6 +51,7 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 		this.indexPage = templateDir + INDEX_PAGE_NAME;
 		this.paginatePage = templateDir + PAGINATE_PAGE_NAME;
 		this.formPage = templateDir + FORM_PAGE_NAME;
+		this.detailPage = templateDir + DETAIL_PAGE_NAME;
 	}
 
 	@RequestMapping
@@ -72,7 +75,7 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 	}
 
 	@PostMapping("/create")
-	public String create(@ModelAttribute("form") @Valid D form, Model model, BindingResult validation,
+	public String create(@ModelAttribute("form") @Valid D form, BindingResult validation, Model model,
 			RedirectAttributes redirect) {
 
 		if (validation.hasErrors()) {
@@ -102,17 +105,21 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 	public String update(@PathVariable("id") I id, @ModelAttribute("form") D form, Model model,
 			RedirectAttributes redirect) {
 
-		if (!crudService.existsById(id)) {
+		var record = crudService.findById(id);
+
+		if (record.isEmpty()) {
 			redirect.addFlashAttribute(WARN_KEY, NOT_FOUND_MSG);
 
 			return getRedirectUrl(null);
 		}
 
+		model.addAttribute("form", mapper.mapToDto(record.get()));
+
 		return formPage;
 	}
 
 	@PostMapping("/{id}/update")
-	public String update(@PathVariable("id") I id, @ModelAttribute @Valid D form, Model model, BindingResult validation,
+	public String update(@PathVariable("id") I id, @ModelAttribute @Valid D form, BindingResult validation, Model model,
 			RedirectAttributes redirect) {
 
 		if (!crudService.existsById(id)) {
@@ -147,7 +154,23 @@ public abstract class CrudController<E extends AbstractEntity<I>, D extends Dto<
 		return getRedirectUrl(null);
 	}
 
+	@GetMapping("/{id}")
+	public String detail(@PathVariable("id") I id, Model model, RedirectAttributes redirect) {
+
+		var record = crudService.findById(id);
+
+		if (record.isEmpty()) {
+			redirect.addFlashAttribute(WARN_KEY, NOT_FOUND_MSG);
+
+			return getRedirectUrl(null);
+		}
+
+		model.addAttribute("record", record.get());
+
+		return detailPage;
+	}
+
 	protected String getRedirectUrl(E entity) {
-		return "redirect:/" + this.baseUrl + ((null == entity) ? "" : "/" + entity.getId());
+		return "redirect:" + this.baseUrl + ((null == entity) ? "" : "/" + entity.getId());
 	}
 }
