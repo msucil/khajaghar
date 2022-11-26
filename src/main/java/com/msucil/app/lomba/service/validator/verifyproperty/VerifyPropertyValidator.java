@@ -1,4 +1,4 @@
-package com.msucil.app.lomba.service.verifyproperty;
+package com.msucil.app.lomba.service.validator.verifyproperty;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanWrapper;

@@ -1,7 +1,7 @@
 package com.msucil.app.lomba.web.view.security;
 
 import com.msucil.app.lomba.core.web.Dto;
-import com.msucil.app.lomba.service.verifyproperty.VerifyProperty;
+import com.msucil.app.lomba.service.validator.verifyproperty.VerifyProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

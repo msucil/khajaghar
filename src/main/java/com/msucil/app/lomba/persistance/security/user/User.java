@@ -3,6 +3,7 @@ package com.msucil.app.lomba.persistance.security.user;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.msucil.app.lomba.core.persistance.AbstractAuditableEntity;
 
@@ -21,7 +22,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class User extends AbstractAuditableEntity<Long, User>{
+public class User extends AbstractAuditableEntity<Long, User> implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 	

@@ -1,4 +1,4 @@
-package com.msucil.app.lomba.service.notemptyvalue;
+package com.msucil.app.lomba.service.validator.notemptyvalue;
 
 
 import org.apache.commons.lang3.StringUtils;
