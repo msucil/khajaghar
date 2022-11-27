@@ -1,5 +1,6 @@
 package com.msucil.app.lomba.persistance.security.user;
 
+import java.util.Collections;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -10,9 +11,11 @@ import com.msucil.app.lomba.core.persistance.AbstractAuditableEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
@@ -32,6 +35,7 @@ public class User extends AbstractAuditableEntity<Long, User> implements UserDet
 	private String password;
 	
 	@Transient
+	@Getter(value = AccessLevel.NONE)
 	private Set<GrantedAuthority> authorities;
 
 	private boolean accountNonExpired = true;
@@ -41,4 +45,8 @@ public class User extends AbstractAuditableEntity<Long, User> implements UserDet
 	private boolean credentialsNonExpired = true;
 
 	private boolean enabled = true;
+	
+	public Set<GrantedAuthority> getAuthorities(){
+		return Collections.emptySet();
+	}
 }
