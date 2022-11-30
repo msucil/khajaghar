@@ -1,15 +1,11 @@
-package com.msucil.app.lomba.web.view.security;
+package com.msucil.app.lomba.web.view.security.account.user;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.msucil.app.lomba.persistance.security.user.User;
-import com.msucil.app.lomba.web.view.security.UserMapper;
 
 
 class UserMapperTest {

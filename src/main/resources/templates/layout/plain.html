@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="layout(title, content)">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title th:replace="${title}"></title>
+
+<!-- Main styles for this application-->
+<link th:href="@{/theme/css/theme/theme.css}"
+	href="../../../frontend/dist/theme/theme.css" rel="stylesheet" />
+	
+<link th:href="@{/library/bootstrap-icons/bootstrap-icons.css}"
+	href="../../../frontend/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+	rel="stylesheet" />
+	
+</head>
+<body class="bg-light min-vh-100 d-flex flex-row align-items-center">
+	<div class="container">
+		<div class="row justify-content-center">
+			<section th:replace="${content}"></section>
+		</div>
+	</div>
+</body>
+</html>

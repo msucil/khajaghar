@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/plain :: layout(~{::title}, ~{::#content})}">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Register System User</title>
+</head>
+<body>
+
+	<div class="col-md-6" id="content">
+		<div class="card mx-4">
+			<div class="card-body p-4">
+				<h1 class="text-center">Register</h1>
+				<div class="text-muted">Create System User Account</div>
+				<div class="text-muted mb-2">System User Account registration is enabled only once
+					during application setup</div>
+
+				<div class="col-md-12" th:if="${error}">
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert">
+						<span th:text="${error}"></span>
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+
+				<form th:action="@{/security/account/system/register-user}" method="post" th:object="${form}">
+
+					<div class="input-group mb-3">
+						<span class="input-group-text">
+							<i class="bi bi-person"></i>
+						</span>
+
+						<input class="form-control"
+							th:classappend="${#fields.hasErrors('fullName')? 'is-invalid' : ''}"
+							required type="text" placeholder="Name" th:field="*{fullName}" />
+
+						<div class="invalid-feedback"
+							th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></div>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text"> @ </span>
+
+						<input class="form-control"
+							th:classappend="${#fields.hasErrors('username')? 'is-invalid' : ''}"
+							required type="text" placeholder="Username"
+							th:field="*{username}">
+
+						<div class="invalid-feedback"
+							th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">
+							<i class="bi bi-envelope-open"></i>
+						</span>
+
+						<input class="form-control"
+							th:classappend="${#fields.hasErrors('email')? 'is-invalid' : ''}"
+							required type="text" placeholder="Email" th:field="*{email}">
+						<div class="invalid-feedback"
+							th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						<span class="input-group-text">
+							<i class="bi bi-lock"></i>
+						</span>
+
+						<input class="form-control"
+							th:classappend="${#fields.hasErrors('password')? 'is-invalid' : ''}"
+							required type="password" placeholder="Password"
+							th:field="*{password}">
+						<div class="invalid-feedback"
+							th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+						</div>
+					</div>
+					<div class="input-group mb-4">
+						<span class="input-group-text">
+							<i class="bi bi-lock-fill"></i>
+						</span>
+
+						<input class="form-control"
+							th:classappend="${#fields.hasErrors('password')? 'is-invalid' : ''}"
+							required type="password" placeholder="Repeat password"
+							th:field="*{verifyPassword}">
+						<div class="invalid-feedback"
+							th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+						</div>
+					</div>
+					<button class="btn btn-block btn-outline-primary" type="submit">Register
+						Account
+						</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

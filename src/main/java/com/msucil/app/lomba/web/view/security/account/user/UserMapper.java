@@ -1,4 +1,4 @@
-package com.msucil.app.lomba.web.view.security;
+package com.msucil.app.lomba.web.view.security.account.user;
 
 import org.mapstruct.Mapper;
 

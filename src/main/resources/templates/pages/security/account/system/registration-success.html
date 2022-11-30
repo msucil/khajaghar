@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/plain :: layout(~{::title}, ~{::#content})}">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Register System User</title>
+</head>
+<body>
+
+	<div class="col-md-6" id="content">
+		<div class="card mx-4">
+			<div class="card-body p-4">
+
+				<div class="col-md-12" th:if="${success}">
+					<div class="alert alert-danger alert-dismissible fade show"
+						role="alert">
+						<span th:text="${success}"></span>
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

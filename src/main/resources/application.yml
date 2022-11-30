@@ -18,6 +18,11 @@ spring:
     exceptiontranslation:
       enabled: true
 
+server:
+  error:
+    whitelabel:
+      enabled: false
+
 logging:
   level:
     web: INFO
