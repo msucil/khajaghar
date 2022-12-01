@@ -18,24 +18,23 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class User extends AbstractAuditableEntity<Long, User> implements UserDetails{
+public class User extends AbstractAuditableEntity<Long, User> implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private String fullName;
 	private String username;
 	private String email;
 	private String password;
-	
+
 	@Transient
-	@Getter(value = AccessLevel.NONE)
+	@Getter(AccessLevel.NONE)
 	private Set<GrantedAuthority> authorities;
 
 	private boolean accountNonExpired = true;
@@ -45,8 +44,8 @@ public class User extends AbstractAuditableEntity<Long, User> implements UserDet
 	private boolean credentialsNonExpired = true;
 
 	private boolean enabled = true;
-	
-	public Set<GrantedAuthority> getAuthorities(){
+
+	public Set<GrantedAuthority> getAuthorities() {
 		return Collections.emptySet();
 	}
 }
