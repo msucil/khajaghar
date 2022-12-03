@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{layout/plain :: layout(~{::title}, ~{::#content})}">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Sign In</title>
+</head>
+<body>
+
+	<div class="col-md-4" id="content">
+		<div class="card-group">
+			<div class="card p-4">
+				<div class="card-body">
+					<form th:name="loginForm" th:action="@{/security/auth/login}"
+						method="post">
+						<h1>Login</h1>
+						<p class="text-muted">Sign In to your account</p>
+						<p th:if="${param.error}" class="text-muted text-danger">
+							Invalid Username or Password</p>
+						<p th:if="${param.logout}" class="text-muted">You have been
+							logged out.</p>
+						<p th:if="${error}" class="text-muted text-danger"
+							th:text="${error}"></p>
+						<p th:if="${success}" class="text-muted text-success"
+							th:text="${success}"></p>
+
+						<div class="input-group mb-3">
+							<span class="input-group-text">@</span>
+
+							<input class="form-control" type="text" name="username" required
+								placeholder="Username" />
+						</div>
+						
+						<div class="input-group mb-4">
+							<span class="input-group-text">
+								<i class="bi bi-lock"></i>
+							</span>
+
+							<input class="form-control" type="password" name="password"
+								required placeholder="Password">
+						</div>
+						
+						<div class="row">
+							<div class="col-6">
+								<button class="btn btn-primary px-4" type="submit">Login</button>
+							</div>
+							<div class="col-6 text-right">
+								<a class="btn btn-link d-flex flex-row-reverse text-secondary px-0" type="button"
+									th:href="@{/forget-password}">Forgot password? </a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

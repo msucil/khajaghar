@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/plain :: plainLayout('Confirm Logout !', ~{::#content})}">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<head>
+  <title></title>
+</head>
+<body>
+<div class="col-md-8" id="content">
+  <div class="card-group">
+    <div class="card p-4">
+      <div class="card-body">
+        <form th:action="@{/logout}" method="post">
+          <h1>Logout</h1>
+          <p class="text-muted">Are you sure you want to Logout?</p>
+          <div class="row">
+            <div class="col-6">
+              <button class="btn btn-outline-primary px-4" type="submit">Logout</button>
+            </div>
+            <div class="col-6 text-right">
+              <a class="btn btn-primary" th:href="@{/}">
+                Back to Dashboard</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

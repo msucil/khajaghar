@@ -20,11 +20,14 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.formLogin(login -> login.loginPage("/login").permitAll()).authorizeHttpRequests(
-				req -> req.requestMatchers("/security/account/system/**").permitAll().anyRequest().authenticated());
+		http.formLogin(login -> login.loginPage("/security/auth/login").permitAll()
+				.loginProcessingUrl("/security/auth/login").permitAll())
+				.logout(logout -> logout.logoutUrl("/security/auth/logout").clearAuthentication(true)
+						.invalidateHttpSession(true))
+				.authorizeHttpRequests(req -> req.requestMatchers("/security/account/system/**", "/security/auth/**")
+						.permitAll().anyRequest().authenticated());
 
 		return http.build();
-
 	}
 
 	@Bean
