@@ -1,5 +1,7 @@
 package com.msucil.app.lomba.config;
 
+import org.springframework.boot.actuate.audit.AuditEventRepository;
+import org.springframework.boot.actuate.audit.InMemoryAuditEventRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,25 +15,31 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.formLogin(login -> login.loginPage("/security/auth/login").permitAll()
-				.loginProcessingUrl("/security/auth/login").permitAll())
-				.logout(logout -> logout.logoutUrl("/security/auth/logout").clearAuthentication(true)
-						.invalidateHttpSession(true))
-				.authorizeHttpRequests(req -> req.requestMatchers("/security/account/system/**", "/security/auth/**")
-						.permitAll().anyRequest().authenticated());
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.formLogin(login -> login.loginPage("/security/auth/login").permitAll()
+                        .loginProcessingUrl("/security/auth/login").permitAll())
+                .logout(logout -> logout.logoutUrl("/security/auth/logout").clearAuthentication(true)
+                        .invalidateHttpSession(true))
+                .authorizeHttpRequests(req -> req.requestMatchers("/security/account/system/**", "/security/auth/**", "/actuator/**")
+                        .permitAll().anyRequest().authenticated());
 
-		return http.build();
-	}
+        return http.build();
+    }
 
-	@Bean
-	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().requestMatchers("/library/**", "/theme/**");
-	}
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/library/**", "/theme/**");
+    }
+
+    @Bean
+    public AuditEventRepository auditEventRepository() {
+        return new InMemoryAuditEventRepository();
+    }
 }
+

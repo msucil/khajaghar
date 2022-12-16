@@ -22,9 +22,29 @@ server:
   error:
     whitelabel:
       enabled: false
+      
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include:
+        - health
+        - info
+        - env
+        - auditevents
+        - beans
+        - conditions
+        - configprops
+        - liquibase
+        - metrics
+        - startup
+        - mappings
+  auditevents:
+    enabled: true
 
 logging:
   level:
-    web: INFO
+    web: DEBUG
     '[net.ttddyy.dsproxy.listener]': debug
   

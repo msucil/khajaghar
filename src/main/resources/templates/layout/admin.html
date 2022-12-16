@@ -40,7 +40,7 @@
 			<li class="nav-group">
 				<a class="nav-link nav-group-toggle" href="#">
 					<svg class="nav-icon">
-             
+
             </svg>
 					Base
 				</a>
@@ -138,7 +138,7 @@
 							</div>
 							<a class="dropdown-item" href="#">
 								<svg class="icon me-2">
-                    
+
                   </svg>
 								Updates
 								<span class="badge badge-sm bg-info ms-2">42</span>
@@ -166,7 +166,7 @@
 								Profile
 							</a>
 							<a class="dropdown-item" href="#">
-								
+
 								Settings
 							</a>
 							<a class="dropdown-item" href="#">
@@ -180,13 +180,13 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#">
 								<svg class="icon me-2">
-                    
+
                   </svg>
 								Lock Account
 							</a>
 							<a class="dropdown-item" href="#">
 								<svg class="icon me-2">
-                    
+
                   </svg>
 								Logout
 							</a>
@@ -230,6 +230,7 @@
 		</div>
 		<footer class="footer">
 			<div>Lomba The Gurkha Bistro</div>
+<!--			<div th:text="${(null != #objects.nullSafe(@gitProperties,null)) ? @gitProperties?.getCommitId(): ''}"></div>-->
 		</footer>
 	</div>
 
@@ -238,7 +239,6 @@
 	<script th:src="@{/theme/js/coreui.bundle.min.js}"
 		src="../../../frontend/node_modules/@coreui/coreui/dist/js/coreui.bundle.min.js"
 		type="text/javascript">
-		
 	</script>
 
 	<th:block th:replace="${scripts}" />
