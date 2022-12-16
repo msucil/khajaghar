@@ -8,10 +8,6 @@ import org.springframework.core.io.ClassPathResource;
 @Configuration
 public class PropertySourceConfig {
 
-    private PropertySourceConfig() {
-
-    }
-
     @Bean
     public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
         PropertySourcesPlaceholderConfigurer placeholderConfig = new PropertySourcesPlaceholderConfigurer();
