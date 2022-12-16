@@ -1,4 +1,4 @@
-package com.msucil.app.lomba.service.verifyproperty;
+package com.msucil.app.lomba.service.validator.verifyproperty;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

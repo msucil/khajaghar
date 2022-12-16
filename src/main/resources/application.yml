@@ -2,6 +2,7 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/changelog-master.xml
+    
   jpa:
     show-sql: false
     properties:
@@ -9,6 +10,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
+      
   datasource:
     url: jdbc:postgresql://localhost:5432/lomba
     username: postgres 
@@ -17,8 +19,29 @@ spring:
   dao:
     exceptiontranslation:
       enabled: true
+      
+  info:
+    git:
+      location: classpath:git.properties
+  
+  main:
+    log-startup-info: true
+    
+management:
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    env:
+      enabled: true
+    info:
+      enabled: true
+
+server:
+  error:
+    whitelabel:
+      enabled: false
 
 logging:
   level:
     web: INFO
-    '[net.ttddyy.dsproxy.listener]': debug
+    '[net.ttddyy.dsproxy.listener]': info

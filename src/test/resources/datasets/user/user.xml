@@ -1,0 +1,4 @@
+<dataset>
+  <users id="1" full_name="admin" username="admin" password="password" email="email@gmail.com"
+    version="0"/>
+</dataset>

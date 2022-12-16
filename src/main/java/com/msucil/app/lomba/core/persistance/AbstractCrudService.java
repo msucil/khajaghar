@@ -52,5 +52,9 @@ public abstract class AbstractCrudService<T, K> implements CrudService<T, K> {
 	public void deleteById(K id) {
 		repository.deleteById(id);
 	}
+	
+	public long count() {
+		return repository.count();
+	}
 
 }

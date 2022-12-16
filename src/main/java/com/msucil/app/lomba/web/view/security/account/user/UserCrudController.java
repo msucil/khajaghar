@@ -1,4 +1,4 @@
-package com.msucil.app.lomba.web.view.security;
+package com.msucil.app.lomba.web.view.security.account.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
